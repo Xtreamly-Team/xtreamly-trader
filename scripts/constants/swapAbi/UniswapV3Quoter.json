@@ -1,0 +1,4902 @@
+[
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "_factory",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "_WETH9",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "WETH9",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "factory",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "quoteExactInput",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "path",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                },
+                {
+                    "name": "amountIn",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amountOut",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96AfterList",
+                    "type": "uint160[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                },
+                {
+                    "name": "initializedTicksCrossedList",
+                    "type": "uint32[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                },
+                {
+                    "name": "gasEstimate",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "quoteExactInputSingle",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "params",
+                    "type": "tuple",
+                    "storage_location": "default",
+                    "components": [
+                        {
+                            "name": "tokenIn",
+                            "type": "address",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "address"
+                            }
+                        },
+                        {
+                            "name": "tokenOut",
+                            "type": "address",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "address"
+                            }
+                        },
+                        {
+                            "name": "amountIn",
+                            "type": "uint256",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint24",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        },
+                        {
+                            "name": "sqrtPriceLimitX96",
+                            "type": "uint160",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        }
+                    ],
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amountOut",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96After",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "initializedTicksCrossed",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "gasEstimate",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "quoteExactOutput",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "path",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                },
+                {
+                    "name": "amountOut",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amountIn",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96AfterList",
+                    "type": "uint160[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                },
+                {
+                    "name": "initializedTicksCrossedList",
+                    "type": "uint32[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                },
+                {
+                    "name": "gasEstimate",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "quoteExactOutputSingle",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "params",
+                    "type": "tuple",
+                    "storage_location": "default",
+                    "components": [
+                        {
+                            "name": "tokenIn",
+                            "type": "address",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "address"
+                            }
+                        },
+                        {
+                            "name": "tokenOut",
+                            "type": "address",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "address"
+                            }
+                        },
+                        {
+                            "name": "amount",
+                            "type": "uint256",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint24",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        },
+                        {
+                            "name": "sqrtPriceLimitX96",
+                            "type": "uint160",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        }
+                    ],
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amountIn",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96After",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "initializedTicksCrossed",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "gasEstimate",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "uniswapV3SwapCallback",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "amount0Delta",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount1Delta",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "path",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": []
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "factory",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "fee",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "maxLiquidityPerTick",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "tickSpacing",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "token0",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "token1",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "burn",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "collect",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount0Requested",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1Requested",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "flash",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "type": "function",
+            "name": "increaseObservationCardinalityNext",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "observationCardinalityNext",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "type": "function",
+            "name": "initialize",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "sqrtPriceX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "type": "function",
+            "name": "mint",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "swap",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "zeroForOne",
+                    "type": "bool",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bool"
+                    }
+                },
+                {
+                    "name": "amountSpecified",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "sqrtPriceLimitX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "observations",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "index",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "blockTimestamp",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tickCumulative",
+                    "type": "int56",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "secondsPerLiquidityCumulativeX128",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "initialized",
+                    "type": "bool",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bool"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "tickBitmap",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "wordPosition",
+                    "type": "int16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "positions",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "key",
+                    "type": "bytes32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "_liquidity",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeGrowthInside0LastX128",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeGrowthInside1LastX128",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tokensOwed0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tokensOwed1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "protocolFees",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "token0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "token1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "slot0",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "sqrtPriceX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tick",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "observationIndex",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "observationCardinality",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "observationCardinalityNext",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "unlocked",
+                    "type": "bool",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bool"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "ticks",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "tick",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "liquidityGross",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "liquidityNet",
+                    "type": "int128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "feeGrowthOutside0X128",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeGrowthOutside1X128",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tickCumulativeOutside",
+                    "type": "int56",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "secondsPerLiquidityOutsideX128",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "secondsOutside",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "initialized",
+                    "type": "bool",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bool"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "feeGrowthGlobal0X128",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "feeGrowthGlobal1X128",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "liquidity",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "collectProtocol",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0Requested",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1Requested",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "setFeeProtocol",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "feeProtocol0",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol1",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": []
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "snapshotCumulativesInside",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "tickCumulativeInside",
+                    "type": "int56",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "secondsPerLiquidityInsideX128",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "secondsInside",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "collectProtocol",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0Requested",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1Requested",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "feeGrowthGlobal0X128",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "observations",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "index",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "blockTimestamp",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tickCumulative",
+                    "type": "int56",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "secondsPerLiquidityCumulativeX128",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "initialized",
+                    "type": "bool",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bool"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "setFeeProtocol",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "feeProtocol0",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol1",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "type": "function",
+            "name": "feeGrowthGlobal1X128",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "slot0",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "sqrtPriceX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tick",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "observationIndex",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "observationCardinality",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "observationCardinalityNext",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "unlocked",
+                    "type": "bool",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bool"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "ticks",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "tick",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "liquidityGross",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "liquidityNet",
+                    "type": "int128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "feeGrowthOutside0X128",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeGrowthOutside1X128",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tickCumulativeOutside",
+                    "type": "int56",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "secondsPerLiquidityOutsideX128",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "secondsOutside",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "initialized",
+                    "type": "bool",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bool"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "observe",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "secondsAgos",
+                    "type": "uint32[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "tickCumulatives",
+                    "type": "int56[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "int"
+                        }
+                    }
+                },
+                {
+                    "name": "secondsPerLiquidityCumulativeX128s",
+                    "type": "uint160[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "positions",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "key",
+                    "type": "bytes32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "_liquidity",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeGrowthInside0LastX128",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeGrowthInside1LastX128",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tokensOwed0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tokensOwed1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "tickBitmap",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "wordPosition",
+                    "type": "int16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "token1",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "fee",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "flash",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "type": "function",
+            "name": "increaseObservationCardinalityNext",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "observationCardinalityNext",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "type": "function",
+            "name": "liquidity",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "maxLiquidityPerTick",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "mint",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "protocolFees",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "token0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "token1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "swap",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "zeroForOne",
+                    "type": "bool",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bool"
+                    }
+                },
+                {
+                    "name": "amountSpecified",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "sqrtPriceLimitX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "burn",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "collect",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount0Requested",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1Requested",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amount0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "factory",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "initialize",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "sqrtPriceX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "type": "function",
+            "name": "tickSpacing",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "token0",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "event",
+            "name": "Burn",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "owner",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "CollectProtocol",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Flash",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "paid0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "paid1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "SetFeeProtocol",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "feeProtocol0Old",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol1Old",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol0New",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol1New",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Collect",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "owner",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "IncreaseObservationCardinalityNext",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "observationCardinalityNextOld",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "observationCardinalityNextNew",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Initialize",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sqrtPriceX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tick",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Mint",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "owner",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Swap",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "liquidity",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tick",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "quoteExactOutputSingle",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "params",
+                    "type": "tuple",
+                    "storage_location": "default",
+                    "components": [
+                        {
+                            "name": "tokenIn",
+                            "type": "address",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "address"
+                            }
+                        },
+                        {
+                            "name": "tokenOut",
+                            "type": "address",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "address"
+                            }
+                        },
+                        {
+                            "name": "amount",
+                            "type": "uint256",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint24",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        },
+                        {
+                            "name": "sqrtPriceLimitX96",
+                            "type": "uint160",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        }
+                    ],
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amountIn",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96After",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "initializedTicksCrossed",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "gasEstimate",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "quoteExactInput",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "path",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                },
+                {
+                    "name": "amountIn",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amountOut",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96AfterList",
+                    "type": "uint160[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                },
+                {
+                    "name": "initializedTicksCrossedList",
+                    "type": "uint32[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                },
+                {
+                    "name": "gasEstimate",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "quoteExactInputSingle",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "params",
+                    "type": "tuple",
+                    "storage_location": "default",
+                    "components": [
+                        {
+                            "name": "tokenIn",
+                            "type": "address",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "address"
+                            }
+                        },
+                        {
+                            "name": "tokenOut",
+                            "type": "address",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "address"
+                            }
+                        },
+                        {
+                            "name": "amountIn",
+                            "type": "uint256",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        },
+                        {
+                            "name": "fee",
+                            "type": "uint24",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        },
+                        {
+                            "name": "sqrtPriceLimitX96",
+                            "type": "uint160",
+                            "storage_location": "default",
+                            "offset": 0,
+                            "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                            "indexed": false,
+                            "simple_type": {
+                                "type": "uint"
+                            }
+                        }
+                    ],
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amountOut",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96After",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "initializedTicksCrossed",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "gasEstimate",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "quoteExactOutput",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "path",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                },
+                {
+                    "name": "amountOut",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "amountIn",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96AfterList",
+                    "type": "uint160[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                },
+                {
+                    "name": "initializedTicksCrossedList",
+                    "type": "uint32[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                },
+                {
+                    "name": "gasEstimate",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Swap",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "sqrtPriceX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "liquidity",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tick",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "SetFeeProtocol",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "feeProtocol0Old",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol1Old",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol0New",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "feeProtocol1New",
+                    "type": "uint8",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Collect",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "owner",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "CollectProtocol",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Flash",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "recipient",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "paid0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "paid1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "IncreaseObservationCardinalityNext",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "observationCardinalityNextOld",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "observationCardinalityNextNew",
+                    "type": "uint16",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Initialize",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sqrtPriceX96",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "tick",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Mint",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "sender",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "owner",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        },
+        {
+            "type": "event",
+            "name": "Burn",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": [
+                {
+                    "name": "owner",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                },
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": true,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount",
+                    "type": "uint128",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount0",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "amount1",
+                    "type": "uint256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ],
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "observe",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "secondsAgos",
+                    "type": "uint32[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "tickCumulatives",
+                    "type": "int56[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "int"
+                        }
+                    }
+                },
+                {
+                    "name": "secondsPerLiquidityCumulativeX128s",
+                    "type": "uint160[]",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "slice",
+                        "nested_type": {
+                            "type": "uint"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "snapshotCumulativesInside",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [
+                {
+                    "name": "tickLower",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "tickUpper",
+                    "type": "int24",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "tickCumulativeInside",
+                    "type": "int56",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "secondsPerLiquidityInsideX128",
+                    "type": "uint160",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                },
+                {
+                    "name": "secondsInside",
+                    "type": "uint32",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "uint"
+                    }
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "uniswapV3SwapCallback",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "nonpayable",
+            "inputs": [
+                {
+                    "name": "amount0Delta",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "amount1Delta",
+                    "type": "int256",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "int"
+                    }
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "bytes"
+                    }
+                }
+            ],
+            "outputs": []
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "WETH9",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "factory",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        }
+    ],
+    [
+        {
+            "type": "constructor",
+            "name": "",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "",
+            "inputs": null,
+            "outputs": null
+        },
+        {
+            "type": "function",
+            "name": "WETH9",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "function",
+            "name": "factory",
+            "constant": false,
+            "anonymous": false,
+            "stateMutability": "view",
+            "inputs": [],
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address",
+                    "storage_location": "default",
+                    "offset": 0,
+                    "index": "0x0000000000000000000000000000000000000000000000000000000000000000",
+                    "indexed": false,
+                    "simple_type": {
+                        "type": "address"
+                    }
+                }
+            ]
+        }
+    ]
+]
