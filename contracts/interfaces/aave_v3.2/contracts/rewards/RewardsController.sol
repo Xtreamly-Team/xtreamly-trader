@@ -182,7 +182,7 @@ contract RewardsController is RewardsDistributor, VersionedInitializable, IRewar
   }
 
   /**
-   * @dev Get user balances and total supply of all the assets specified by the assets parameter
+   * @dev Get user getBalances and total supply of all the assets specified by the assets parameter
    * @param assets List of assets to retrieve user balance and total supply
    * @param user Address of the user
    * @return userAssetBalances contains a list of structs with user balance and total supply of the given assets

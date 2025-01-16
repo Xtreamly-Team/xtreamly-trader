@@ -543,7 +543,7 @@ interface IPool {
    * @dev WARNING: This function is intended to be used primarily by the protocol itself to get a
    * "dynamic" variable index based on time, current stored index and virtual rate at the current
    * moment (approx. a borrower would get if opening a position). This means that is always used in
-   * combination with variable debt supply/balances.
+   * combination with variable debt supply/getBalances.
    * If using this function externally, consider that is possible to have an increasing normalized
    * variable debt that is not equivalent to how the variable debt index would be updated in storage
    * (e.g. only updates with non-zero variable debt supply)

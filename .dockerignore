@@ -1,0 +1,27 @@
+# Ignore node_modules and build folders
+node_modules/
+build/
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+
+# typechain
+typechain
+typechain-types
+
+# hardhat files
+cache
+artifacts
+
+# zkSync files
+artifacts-zk
+cache-zk
+
+# deployments
+deployments/localhost
+
+# other
+temp

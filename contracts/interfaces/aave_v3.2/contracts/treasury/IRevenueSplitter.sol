@@ -14,9 +14,9 @@ interface IRevenueSplitterErrors {
 /// Once parties want to share their revenue, anyone can call `function splitRevenue(IERC20[] memory tokens)` to check the accrued ERC20 balance inside this contract, and split the amounts between the two recipients.
 /// It also supports split of native currency via `function splitNativeRevenue() external`, in case the instance receives native currency.
 ///
-/// Warning: For recipients, you can use any address, but preferable to use `Collector`, a Safe smart contract multisig or a smart contract that can handle both ERC20 and native transfers, to prevent balances to be locked.
+/// Warning: For recipients, you can use any address, but preferable to use `Collector`, a Safe smart contract multisig or a smart contract that can handle both ERC20 and native transfers, to prevent getBalances to be locked.
 interface IRevenueSplitter is IRevenueSplitterErrors {
-  /// @notice Split token balances in RevenueSplitter and transfer between two recipients
+  /// @notice Split token getBalances in RevenueSplitter and transfer between two recipients
   /// @param tokens List of tokens to check balance and split amounts
   /// @dev Specs:
   ///      - Does not revert if token balance is zero (no-op).

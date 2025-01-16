@@ -23,4 +23,4 @@ RUN npx hardhat compile
 EXPOSE 8545
 
 # Default command to keep the container interactive
-CMD ["bash"]
+CMD ["yarn", "start"]

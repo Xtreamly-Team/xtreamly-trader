@@ -24,7 +24,7 @@ export const getUserWalletBalances = async (
 
         return balance;
     } catch (error) {
-        console.error('Error fetching wallet balances:', error);
+        console.error('Error fetching wallet getBalances:', error);
         throw error;
     }
 };

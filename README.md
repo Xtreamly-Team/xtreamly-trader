@@ -1,36 +1,31 @@
+# Welcome to Xtreamly's AI trader framework
+
+Enhance your development process with this framework, seamlessly integrating Xtreamly's advanced AI models and built-in on-chain capabilities to create fully customized trading bots tailored to your needs!
+
+## Prerequisites
+
+1. Docker
+2. node v18.18.2 (the version inside the .nvmrc file)
+
+## Local execution
+
+1. Set node version: `nvm use` (if you are using nvm)
+2. Install dependencies: `yarn`
+3. Compile the contracts: `yarn compile`
+4. Start your trading bot: `yarn start`
+
 # Dockerization 
 
 ## Build the Image
 
 ```bash
-docker build -t xtr_aave_scripts .
+docker build -t xtreamly_trader .
 ```
 
 ## Run Container
 
 ```bash
-docker run -it --name xtr_aave_scripts -v $(pwd):/app xtr_aave_scripts
-```
-
-## Test Command 
-
-Check if the docker is functional and can run scripts. 
-
-```bash
-docker exec -it xtr_aave_scripts npx ts-node scripts/arbitrum/sepolia/pool/supplyV3.ts --amount 0.02
-```
-
-and this should return sth like this: 
-
-```bash 
-Supplying 0.02 USDC (20000 in Wei) to Aave Pool...
-Approving USDC for Aave Pool...
-Approval transaction sent. Hash: 0xeda3ade57e693c51d3d8c71f041fe9c5975820aec8133d4b72f8ceda5f0d2d90
-USDC approval confirmed.
-Supplying USDC to Aave Pool...
-Transaction sent. Hash: 0x0c1e8460ca1fe690021d2cec308293d38b3db3e339fe7d6226286ccaebcc9cbb
-Transaction confirmed. Block: 106492382
-USDC supply script executed successfully
+docker run -it --name xtreamly_trader -v $(pwd):/app xtreamly_trader
 ```
 
 # How to call the Scripts 
@@ -85,11 +80,11 @@ npx ts-node scripts/arbitrum/sepolia/tViem/vETH/vWithdrawETH.ts --amount 0.005
 ### BalanceOf
 
 ```bash
-npx ts-node scripts/arbitrum/sepolia/tViem/vView/vBalanceOf.ts --user 0xf2873F92324E8EC98a82C47AFA0e728Bd8E41665
+npx ts-node scripts/arbitrum/sepolia/tViem/vView/vBalanceOf.ts --user 0xf2873F92324E8EC98a82C47AFA0e728Bd8E41665 --token 0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d
 ```
 
 ### Get User Wallet Balances
 
 ```bash
-npx ts-node scripts/arbitrum/sepolia/tViem/vView/vGetUserWalletBalances.ts --token 0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d --user 0xf2873F92324E8EC98a82C47AFA0e728Bd8E41665
+npx ts-node scripts/arbitrum/sepolia/tViem/vView/vGetUserWalletBalances.ts --user 0xf2873F92324E8EC98a82C47AFA0e728Bd8E41665
 ```

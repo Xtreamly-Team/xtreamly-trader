@@ -7,7 +7,14 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "allowJs": true // Add this line to allow JavaScript files
+    "allowJs": true,
+    "baseUrl": ".",
+    "rootDirs": ["src"],
+    "paths": {
+      "@scripts/*": ["scripts/*"],
+      "@artifacts/*": ["artifacts/*"],
+      "@xtreamly/*": ["src/*"]
+    }
   },
   "include": [
     "**/*.ts",

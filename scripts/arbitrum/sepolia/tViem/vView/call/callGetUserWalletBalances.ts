@@ -43,7 +43,7 @@ const argv = yargs(hideBin(process.argv))
     
             console.log(`Balances for user ${userAddress}:`, balances);
         } catch (error) {
-            console.error('Error fetching wallet balances:', error);
+            console.error('Error fetching wallet getBalances:', error);
         }
     }
     

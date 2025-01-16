@@ -50,10 +50,10 @@ contract WalletBalanceProvider {
   }
 
   /**
-   * @notice Fetches, for a list of _users and _tokens (ETH included with mock address), the balances
+   * @notice Fetches, for a list of _users and _tokens (ETH included with mock address), the getBalances
    * @param users The list of users
    * @param tokens The list of tokens
-   * @return And array with the concatenation of, for each user, his/her balances
+   * @return And array with the concatenation of, for each user, his/her getBalances
    **/
   function batchBalanceOf(
     address[] calldata users,
@@ -71,7 +71,7 @@ contract WalletBalanceProvider {
   }
 
   /**
-    @dev provides balances of user wallet for all reserves available on the pool
+    @dev provides getBalances of user wallet for all reserves available on the pool
     */
   function getUserWalletBalances(
     address provider,

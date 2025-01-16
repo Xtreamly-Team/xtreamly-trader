@@ -22,12 +22,10 @@ const deployerPrivateKey = process.env.DEPLOYER_PRIVATE_KEY;
 // If not set, it uses ours Etherscan default API key.
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY;
 
-
-
-        // Arbitrum Fork settings
-        // url: `https://nd-551-943-624.p2pify.com/${providerApiKeyArbitrum}`,
-        // enabled: process.env.ARBITRUM_FORKING_ENABLED === "true",
-        // blockNumber: 270938268
+// Arbitrum Fork settings
+// url: `https://nd-551-943-624.p2pify.com/${providerApiKeyArbitrum}`,
+// enabled: process.env.ARBITRUM_FORKING_ENABLED === "true",
+// blockNumber: 270938268
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -57,6 +55,9 @@ const config: HardhatUserConfig = {
     hardhat: {
       forking: {
         // url: `https://ethereum-mainnet.core.chainstack.com/${providerApiKey}`,
+        // url: `https://ethereum-mainnet.core.chainstack.com/ccac1b5240ceb54a547fdcf6a4b50f12`,
+        // url: `https://green-quaint-market.quiknode.pro/5974407691da156e424ad9c11b62cf3b0c77ab7d`,
+        url: process.env.ARBITRUM_MAINNET_RPC,
         enabled: process.env.MAINNET_FORKING_ENABLED === "true",
         // blockNumber: 20999740
         blockNumber: 21124746
@@ -79,11 +80,11 @@ const config: HardhatUserConfig = {
       accounts: [deployerPrivateKey],
     },
     arbitrum: {
-      url: `https://arb1.arbitrum.io/rpc`,
+      url: process.env.ARBITRUM_MAINNET_RPC,
       accounts: [deployerPrivateKey],
     },
     arbitrumSepolia: {
-      url: `https://sepolia-rollup.arbitrum.io/rpc`,
+      url: process.env.ARBITRUM_SEPOLIA_RPC,
       accounts: [deployerPrivateKey],
     },
     /*
@@ -158,12 +159,12 @@ const config: HardhatUserConfig = {
   sourcify: {
     enabled: false,
   },
-      paths: {
-        sources: './contracts',
-        tests: './test',
-        cache: './cache',
-        artifacts: './artifacts',
-    },
+  paths: {
+    sources: './contracts',
+    tests: './test',
+    cache: './cache',
+    artifacts: './artifacts',
+  },
 };
 
 export default config;

@@ -47,7 +47,7 @@ library GenericLogic {
 
   /**
    * @notice Calculates the user data across the reserves.
-   * @dev It includes the total liquidity/collateral/borrow balances in the base currency used by the price feed,
+   * @dev It includes the total liquidity/collateral/borrow getBalances in the base currency used by the price feed,
    * the average Loan To Value, the average Liquidation Ratio, and the Health factor.
    * @param reservesData The state of all the reserves
    * @param reservesList The addresses of all the active reserves
@@ -199,9 +199,9 @@ library GenericLogic {
 
   /**
    * @notice Calculates total debt of the user in the based currency used to normalize the values of the assets
-   * @dev This fetches the `balanceOf` of the variable debt token for the user. For gas reasons, the
+   * @dev This fetches the `getTokenBalance` of the variable debt token for the user. For gas reasons, the
    * variable debt balance is calculated by fetching `scaledBalancesOf` normalized debt, which is cheaper than
-   * fetching `balanceOf`
+   * fetching `getTokenBalance`
    * @param user The address of the user
    * @param reserve The data of the reserve for which the total debt of the user is being calculated
    * @param assetPrice The price of the asset for which the total debt of the user is being calculated
@@ -231,7 +231,7 @@ library GenericLogic {
   /**
    * @notice Calculates total aToken balance of the user in the based currency used by the price oracle
    * @dev For gas reasons, the aToken balance is calculated by fetching `scaledBalancesOf` normalized debt, which
-   * is cheaper than fetching `balanceOf`
+   * is cheaper than fetching `getTokenBalance`
    * @param user The address of the user
    * @param reserve The data of the reserve for which the total aToken balance of the user is being calculated
    * @param assetPrice The price of the asset for which the total aToken balance of the user is being calculated

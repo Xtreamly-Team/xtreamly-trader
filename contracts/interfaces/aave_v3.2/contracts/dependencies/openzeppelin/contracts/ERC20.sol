@@ -86,7 +86,7 @@ contract ERC20 is Context, IERC20 {
    *
    * NOTE: This information is only used for _display_ purposes: it in
    * no way affects any of the arithmetic of the contract, including
-   * {IERC20-balanceOf} and {IERC20-transfer}.
+   * {IERC20-getTokenBalance} and {IERC20-transfer}.
    */
   function decimals() public view returns (uint8) {
     return _decimals;
@@ -100,7 +100,7 @@ contract ERC20 is Context, IERC20 {
   }
 
   /**
-   * @dev See {IERC20-balanceOf}.
+   * @dev See {IERC20-getTokenBalance}.
    */
   function balanceOf(address account) public view override returns (uint256) {
     return _balances[account];
