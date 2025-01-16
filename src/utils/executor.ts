@@ -1,7 +1,7 @@
 import { loadEnv } from "@xtreamly/utils/config";
-
 loadEnv()
 
+import { getConfig } from "@xtreamly/utils/config";
 
 export function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -9,16 +9,17 @@ export function sleep(ms: number): Promise<void> {
 
 export async function executor(
   actions: (round: number) => Promise<void>,
-  interval: number = 60, // Seconds
-  round?: number
 ): Promise<void> {
   console.log("Starting trading loop...");
+
+  const interval = getConfig().interval
+  const rounds = getConfig().rounds
 
   let i = 1
   while (true) {
     await actions(i)
     await sleep(interval * 1000)
-    if (round && i >= round) {
+    if (rounds && i >= rounds) {
       break
     }
     i += 1

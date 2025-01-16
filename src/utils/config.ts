@@ -4,6 +4,7 @@ import { getChainDetails } from "@xtreamly/constants/helpers";
 const requiredEnvVars = [
   'CHAIN',
   'NETWORK',
+  'EXECUTION_INTERVAL',
 ];
 
 
@@ -32,6 +33,8 @@ export interface Config {
   chain: string
   network: string
   rpc: string
+  interval: number
+  rounds: number | undefined
 }
 
 export function getConfig(): Config {
@@ -39,5 +42,7 @@ export function getConfig(): Config {
     chain: process.env.CHAIN!,
     network: process.env.NETWORK!,
     rpc: process.env.RPC!,
+    interval: parseInt(process.env.EXECUTION_INTERVAL!),
+    rounds: process.env.ROUNDS && parseInt(process.env.ROUNDS) || undefined,
   }
 }
