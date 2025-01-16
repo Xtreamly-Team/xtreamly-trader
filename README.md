@@ -2,6 +2,8 @@
 
 Enhance your development process with this framework, seamlessly integrating Xtreamly's advanced AI models and built-in on-chain capabilities to create fully customized trading bots tailored to your needs!
 
+![arch_bot.png](docs/arch_bot.png)
+
 ## Prerequisites
 
 1. Docker
