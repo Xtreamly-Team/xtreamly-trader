@@ -1,5 +1,9 @@
 {
   "name": "xtreamly_trader",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src"
+  },
   "version": "0.0.1",
   "scripts": {
     "vGetReserveDataUSDC": "npx ts-node scripts/arbitrum/sepolia/viewFunctions/getReserveData.ts --token 0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d",
