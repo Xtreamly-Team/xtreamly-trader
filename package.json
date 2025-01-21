@@ -2,7 +2,7 @@
   "name": "xtreamly_trader",
   "main": "src/index.ts",
   "exports": {
-    ".": "./src"
+    ".": "./src/index.ts"
   },
   "version": "0.0.1",
   "scripts": {

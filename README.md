@@ -28,6 +28,13 @@ Enhance your development process with this framework, seamlessly integrating Xtr
     yarn start
     ```
 
+## Install it as a typescript library
+
+```bash
+yarn add git+ssh://git@github.com:Xtreamly-Team/xtreamly-trader
+```
+
+
 ## Developing your first trading bot
 
 The [strategy.ts](strategy.ts) file is where you can code your trading bot's logic.
