@@ -28,4 +28,18 @@ export class Contract {
       args,
     })
   }
+
+  async writeContract(
+    contractAddress: `0x${string}`,
+    functionName: string,
+    args: any[],
+    abi: any,
+  ) {
+    return this.publicClient.readContract({
+      address: contractAddress,
+      abi,
+      functionName,
+      args,
+    })
+  }
 }

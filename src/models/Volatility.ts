@@ -1,4 +1,4 @@
-import { XtreamlyAPI, XtreamlyAPIPath } from "../utils/XtreamlyAPI";
+import { XtreamlyAPI, XtreamlyAPIPath } from "../services/XtreamlyAPI";
 import LowVolatilityPrediction from "../domains/LowVolatilityPrediction";
 
 export class Volatility extends XtreamlyAPI {
