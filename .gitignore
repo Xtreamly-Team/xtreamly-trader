@@ -38,6 +38,7 @@ typechain-types
 # hardhat files
 cache
 artifacts
+!dist/artifacts
 
 # zkSync files
 artifacts-zk

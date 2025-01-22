@@ -9,6 +9,7 @@
     "skipLibCheck": true,
     "allowJs": true,
     "baseUrl": ".",
+    "outDir": "./dist",
     "rootDirs": ["src"],
     "paths": {
       "@scripts/*": ["scripts/*"],
@@ -17,7 +18,7 @@
     }
   },
   "include": [
-    "**/*.ts",
-    "**/*.js" // Add this line to include JavaScript files in the compilation
+    "src/**/*.ts",
+    "src/**/*.js" // Add this line to include JavaScript files in the compilation
   ]
 }
