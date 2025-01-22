@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AaveAPI = void 0;
-const aave_config_1 = require("@xtreamly/utils/aave_config");
+const aave_config_1 = require("../utils/aave_config");
 const HOURS_IN_MS = 60 * 60 * 1000;
 class AaveAPI {
     constructor() {

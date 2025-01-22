@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkChainDetails = checkChainDetails;
 exports.getChainDetails = getChainDetails;
-const chains_1 = require("@xtreamly/constants/chains");
+const chains_1 = require("../constants/chains");
 function checkChainDetails() {
     const chainName = process.env.CHAIN;
     const network = process.env.NETWORK;

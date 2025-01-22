@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sleep = sleep;
 exports.executor = executor;
-const config_1 = require("@xtreamly/utils/config");
+const config_1 = require("../utils/config");
 (0, config_1.loadEnv)();
-const config_2 = require("@xtreamly/utils/config");
+const config_2 = require("../utils/config");
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }

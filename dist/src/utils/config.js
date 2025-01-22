@@ -37,7 +37,7 @@ exports.loadEnv = loadEnv;
 exports.getConfig = getConfig;
 exports.getWallet = getWallet;
 const dotenv = __importStar(require("dotenv"));
-const helpers_1 = require("@xtreamly/constants/helpers");
+const helpers_1 = require("../constants/helpers");
 const ethers_1 = require("ethers");
 const requiredEnvVars = [
     'CHAIN',

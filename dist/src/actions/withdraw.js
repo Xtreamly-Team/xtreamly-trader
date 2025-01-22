@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.withdrawETH = withdrawETH;
 exports.approveAWETH = approveAWETH;
 const ethers_1 = require("ethers");
-const WrappedTokenGatewayV3_json_1 = __importDefault(require("@artifacts/contracts/interfaces/aave_v3.2/contracts/helpers/WrappedTokenGatewayV3.sol/WrappedTokenGatewayV3.json"));
-const helpers_1 = require("@xtreamly/constants/helpers");
-const IERC20_json_1 = __importDefault(require("@artifacts/contracts/interfaces/IERC20.sol/IERC20.json"));
+const WrappedTokenGatewayV3_json_1 = __importDefault(require("../../artifacts/contracts/interfaces/aave_v3.2/contracts/helpers/WrappedTokenGatewayV3.sol/WrappedTokenGatewayV3.json"));
+const helpers_1 = require("../constants/helpers");
+const IERC20_json_1 = __importDefault(require("../../artifacts/contracts/interfaces/IERC20.sol/IERC20.json"));
 async function withdrawETH(signer, amountETH) {
     const chainDetails = (0, helpers_1.getChainDetails)();
     const amount = amountETH === "max" ? ethers_1.ethers.MaxUint256 : ethers_1.ethers.parseEther(amountETH.toString());

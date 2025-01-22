@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Contract = void 0;
-const helpers_1 = require("@xtreamly/constants/helpers");
-const config_1 = require("@xtreamly/utils/config");
+const helpers_1 = require("../constants/helpers");
+const config_1 = require("../utils/config");
 const viem_1 = require("viem");
 class Contract {
     constructor() {
