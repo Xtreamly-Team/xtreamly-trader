@@ -18,7 +18,7 @@ const providerApiKeyArbitrum = process.env.CHAINSTACK_API_KEY_ARBITRUM;
 const providerApiKeyArbitrumSepolia = process.env.CHAINSTACK_API_KEY_ARBITRUM_SEPOLIA;
 const providerApiKeySEPOLIA = process.env.CHAINSTACK_API_KEY_SEPOLIA;
 // If not set, it uses the hardhat account 0 private key.
-const deployerPrivateKey = process.env.DEPLOYER_PRIVATE_KEY;
+const deployerPrivateKey = process.env.WALLET_PRIVATE_KEY;
 // If not set, it uses ours Etherscan default API key.
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY;
 

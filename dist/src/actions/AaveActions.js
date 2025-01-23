@@ -29,7 +29,7 @@ class AaveActions {
         const amount = amountETH === "max" ? ethers_1.MaxUint256 : (0, ethers_1.parseEther)(amountETH.toString());
         await this.approveAWETH(amount);
         const address = await this.signer.getAddress();
-        const tx = await this.gatewayContract.withdrawETH(address, amountETH, address);
+        const tx = await this.gatewayContract.withdrawETH(address, amount, address);
         return tx.wait();
     }
     async withdrawUSDC(amount) {
@@ -45,7 +45,7 @@ class AaveActions {
         const parsedAmount = (0, ethers_1.parseUnits)(amount.toString(), 6);
         await this.approve(parsedAmount, this.chainDetails.TOKENS.USDC, this.chainDetails.V3_POOL_AAVE);
         const tx = await this.aavePoolV3Contract.supply(this.chainDetails.TOKENS.USDC, // Asset to supply (USDC address)
-        amount, // Amount to supply (in smallest unit, i.e., Wei)
+        parsedAmount, // Amount to supply (in smallest unit, i.e., Wei)
         await this.signer.getAddress(), // On behalf of the signer
         0 // Referral code (set to 0 if not using referrals)
         );
@@ -58,7 +58,7 @@ class AaveActions {
         const parsedAmount = amount === "max" ? ethers_1.MaxUint256 : (0, ethers_1.parseUnits)(amount.toString(), 6);
         await this.approve(parsedAmount, this.chainDetails.TOKENS.USDC, this.chainDetails.V3_POOL_AAVE);
         const tx = await this.aavePoolV3Contract.repay(this.chainDetails.TOKENS.USDC, // Asset to supply (USDC address)
-        amount, // Amount to supply (in smallest unit, i.e., Wei)
+        parsedAmount, // Amount to supply (in smallest unit, i.e., Wei)
         2, await this.signer.getAddress());
         return tx.wait();
     }
