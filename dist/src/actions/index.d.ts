@@ -1,3 +1,3 @@
 export * from './getBalances';
-export * from './withdraw';
+export * from './AaveActions';
 //# sourceMappingURL=index.d.ts.map
