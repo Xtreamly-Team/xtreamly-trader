@@ -1,1 +1,1 @@
-export * from './LowVolatilityPrediction'
+export * from './VolatilityPrediction'

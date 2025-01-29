@@ -1,8 +1,8 @@
 import { XtreamlyAPI, XtreamlyAPIPath } from "../services/XtreamlyAPI";
-import LowVolatilityPrediction from "../domains/LowVolatilityPrediction";
+import VolatilityPrediction from "../domains/VolatilityPrediction";
 
 export class Volatility extends XtreamlyAPI {
-  async lowPrediction(): Promise<LowVolatilityPrediction> {
+  async prediction(): Promise<VolatilityPrediction> {
     return this.get(XtreamlyAPIPath.volatility)
   }
 }

@@ -50,7 +50,7 @@ async function actions(round: number) {
   const chainDetails = getChainDetails()
   console.log("Round", round);
 
-  const pred = await new Volatility().lowPrediction()
+  const pred = await new Volatility().prediction()
   console.log("Low volatility predicted", pred.low_volatility_signal);
 
   const balance = await getTokenBalance(wallet, chainDetails.TOKENS.USDC)
@@ -100,7 +100,7 @@ async function actions(round: number) {
   const chainDetails = getChainDetails()
   console.log("Round", round);
 
-  const pred = await new Volatility().lowPrediction()
+  const pred = await new Volatility().prediction()
   console.log("Low volatility predicted", pred.low_volatility_signal);
 
   const balance = await getTokenBalance(wallet, chainDetails.TOKENS.USDC)
