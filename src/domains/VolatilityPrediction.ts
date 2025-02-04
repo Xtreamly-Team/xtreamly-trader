@@ -1,6 +1,17 @@
-export default interface VolatilityPrediction {
-  predicted_at: number
-  predicted_at_utc: string
-  market_status: string
-  market_status_description: string
+export interface VolatilityPrediction {
+  timestamp: number
+  timestamp_str: string
+  volatility: number
+}
+
+export interface StatePrediction {
+  timestamp: number
+  timestamp_str: string
+  classification: string
+  classification_description: string
+}
+
+export enum Horizons {
+  min1= "1min",
+  min60= "60min",
 }
