@@ -1,4 +1,5 @@
 import { PROTOCOLS } from "@xtreamly/utils/aave_config";
+import { API } from "@xtreamly/utils/api";
 
 export interface AaveRate {
   timestamp: Date;
@@ -10,11 +11,9 @@ export interface AaveRate {
 
 const HOURS_IN_MS = 60 * 60 * 1000;
 
-export class AaveAPI {
-  private readonly baseUrl: string
-
+export class AaveAPI extends API {
   constructor() {
-    this.baseUrl = "https://aave-api-v2.aave.com/";
+    super("https://aave-api-v2.aave.com/")
   }
 
   private static _toRates(res: any): AaveRate {
@@ -55,10 +54,7 @@ export class AaveAPI {
       resolutionInHours: freq,
     };
 
-    const queryParams = new URLSearchParams(params).toString();
-    const url = `${this.baseUrl}data/rates-history?${queryParams}`
-
-    const response = await fetch(url).then(res => res.json())
+    const response = await this.get('data/rates-history', params)
     const records = response.map(AaveAPI._toRates);
 
     return records.map((record: AaveRate) => ({

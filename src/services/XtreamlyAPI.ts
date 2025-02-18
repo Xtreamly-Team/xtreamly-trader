@@ -1,3 +1,5 @@
+import { API } from "@xtreamly/utils/api";
+
 export enum XtreamlyAPIPath {
   volatility="volatility_prediction",
   volatilityHistorical="volatility_historical",
@@ -5,12 +7,11 @@ export enum XtreamlyAPIPath {
   stateHistorical="state_historical",
 }
 
-export class XtreamlyAPI {
-  private baseUrl: string
-  private headers: Headers
+export class XtreamlyAPI extends API {
+  private readonly headers: Record<string, any>
 
   constructor() {
-    this.baseUrl = "https://api.xtreamly.io/";
+    super("https://api.xtreamly.io/");
 
     const XTREAMLY_API_KEY = process.env.XTREAMLY_API_KEY;
 
@@ -21,22 +22,12 @@ export class XtreamlyAPI {
       `);
     }
 
-    this.headers = new Headers({
-      "Content-Type": "application/json",
+    this.headers = {
       "x-api-key": XTREAMLY_API_KEY,
-    });
+    };
   }
 
   async get(path: XtreamlyAPIPath, params?: Record<string, any>): Promise<any> {
-    const url = new URL(this.baseUrl + path);
-
-    if (params) {
-      Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, value));
-    }
-
-    return fetch(url.toString(),{
-      method: "GET",
-      headers: this.headers,
-    }).then(res => res.json())
+    return super.get(path, params, this.headers)
   }
 }
