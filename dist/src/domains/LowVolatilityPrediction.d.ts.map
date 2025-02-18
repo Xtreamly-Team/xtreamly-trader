@@ -1,1 +1,0 @@
-{"version":3,"file":"LowVolatilityPrediction.d.ts","sourceRoot":"","sources":["../../../src/domains/LowVolatilityPrediction.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,WAAW,uBAAuB;IAC9C,YAAY,EAAE,MAAM,CAAA;IACpB,UAAU,EAAE,MAAM,CAAA;IAClB,IAAI,EAAE,MAAM,CAAA;IACZ,KAAK,EAAE,MAAM,CAAA;IACb,qBAAqB,EAAE,OAAO,CAAA;IAC9B,8BAA8B,EAAE,OAAO,CAAA;CACxC"}

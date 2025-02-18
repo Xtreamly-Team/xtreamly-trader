@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AaveAPI = void 0;
 const aave_config_1 = require("../utils/aave_config");
+const api_1 = require("../utils/api");
 const HOURS_IN_MS = 60 * 60 * 1000;
-class AaveAPI {
+class AaveAPI extends api_1.API {
     constructor() {
-        this.baseUrl = "https://aave-api-v2.aave.com/";
+        super("https://aave-api-v2.aave.com/");
     }
     static _toRates(res) {
         const dt = new Date(res.x.year, res.x.month, res.x.date, res.x.hours);
@@ -30,9 +31,7 @@ class AaveAPI {
             from: startTimestamp,
             resolutionInHours: freq,
         };
-        const queryParams = new URLSearchParams(params).toString();
-        const url = `${this.baseUrl}data/rates-history?${queryParams}`;
-        const response = await fetch(url).then(res => res.json());
+        const response = await this.get('data/rates-history', params);
         const records = response.map(AaveAPI._toRates);
         return records.map((record) => ({
             protocol,
