@@ -1,92 +1,221 @@
-import { ChainDetails, getChainDetails } from "@xtreamly/constants";
-import { Contract, Wallet, parseEther, MaxUint256, BigNumberish, parseUnits } from "ethers";
-import wethGateway
-  from "@artifacts/contracts/interfaces/aave_v3.2/contracts/helpers/WrappedTokenGatewayV3.sol/WrappedTokenGatewayV3.json";
-import erc20Abi from "@artifacts/contracts/interfaces/IERC20.sol/IERC20.json";
-import poolAbi from "@artifacts/contracts/interfaces/aave_v3.2/contracts/protocol/pool/Pool.sol/Pool.json";
+import {
+  BigNumber,
+  Wallet,
+  providers,
+  utils
+} from "ethers";
+import {
+  EthereumTransactionTypeExtended,
+  InterestRate,
+  Pool,
+  UiPoolDataProvider,
+  WalletBalanceProvider
+} from "@aave/contract-helpers";
+import type { Chain } from "viem/_types/types/chain";
+import * as markets from "@bgd-labs/aave-address-book";
+import { formatReserves, formatUserSummary } from "@aave/math-utils";
+import dayjs from "dayjs";
+import { getProvider, runSerially } from "@xtreamly/utils";
+
 
 export class AaveActions {
   private signer: Wallet;
-  private chainDetails: ChainDetails;
-  private gatewayContract: Contract;
-  private aavePoolV3Contract: Contract;
+  private readonly provider: providers.JsonRpcProvider;
+  private market: any;
+  private pool: Pool;
 
-  constructor(signer: Wallet) {
-    this.signer = signer
-    this.chainDetails = getChainDetails()
+  constructor(chain: Chain, provider: providers.JsonRpcProvider, signer: Wallet) {
+    this.signer = signer;
+    this.provider = provider;
 
-    this.gatewayContract = new Contract(this.chainDetails.WRAPPED_TOKEN_GATEWAY, wethGateway.abi, signer);
-    this.aavePoolV3Contract = new Contract(this.chainDetails.V3_POOL_AAVE, poolAbi.abi, this.signer);
+    const market = Object.entries(markets).find(([key, value]) => key.startsWith("AaveV3") && value.CHAIN_ID === chain.id);
+
+    if (!market) {
+      throw Error("Unknown Aave v3 market for chain: " + chain.name);
+    }
+
+    this.market = market[1];
+
+    this.pool = new Pool(getProvider(), {
+      POOL: this.market.POOL,
+      SWAP_COLLATERAL_ADAPTER: this.market.SWAP_COLLATERAL_ADAPTER,
+      WETH_GATEWAY: this.market.WETH_GATEWAY,
+    });
   }
 
-  async depositETH(amountETH: number) {
-    const tx = await this.gatewayContract.depositETH(
-      this.chainDetails.V3_POOL_AAVE, // Address of the Aave Lending Pool
-      await this.signer.getAddress(), // On behalf of the signer
-      0, // Referral code (0 if not applicable)
-      {
-        value: parseEther(amountETH.toString()), // Amount of ETH to deposit
-      }
+  async getBalance(token: string) {
+    const t = new WalletBalanceProvider({
+      walletBalanceProviderAddress: this.market.WALLET_BALANCE_PROVIDER,
+      provider: this.provider,
+    });
+    const asset = this.market.ASSETS[token];
+    const underlyingBalance = await t.balanceOf(this.signer.address, asset.UNDERLYING);
+    const aTokenBalance = await t.balanceOf(this.signer.address, asset.A_TOKEN);
+    return {
+      token,
+      tokenAddress: asset.UNDERLYING,
+      underlyingBalance,
+      balanceFormatted: utils.formatUnits(underlyingBalance, asset.decimals),
+      aTokenBalance,
+      aTokenBalanceFormatted: utils.formatUnits(aTokenBalance, asset.decimals),
+    }
+  }
+
+  async getBalances() {
+    const tokens = Object.keys(this.market.ASSETS);
+    const calls = tokens.map((t) => this.getBalance(t));
+    return Promise.all(calls);
+  }
+
+  async getUserSummary() {
+    const currentTimestamp = dayjs().unix();
+
+    const poolDataProviderContract = new UiPoolDataProvider({
+      uiPoolDataProviderAddress: this.market.UI_POOL_DATA_PROVIDER,
+      provider: this.provider,
+      chainId: this.market.CHAIN_ID,
+    });
+
+    const reserves = await poolDataProviderContract.getReservesHumanized({
+      lendingPoolAddressProvider: this.market.POOL_ADDRESSES_PROVIDER,
+    });
+    const baseCurrencyData = reserves.baseCurrencyData;
+
+    const userReserves = await poolDataProviderContract.getUserReservesHumanized({
+      lendingPoolAddressProvider: this.market.POOL_ADDRESSES_PROVIDER,
+      user: this.signer.address,
+    });
+
+    const formattedReserves = formatReserves({
+      reserves: reserves.reservesData,
+      currentTimestamp,
+      marketReferenceCurrencyDecimals: baseCurrencyData.marketReferenceCurrencyDecimals,
+      marketReferencePriceInUsd: baseCurrencyData.marketReferenceCurrencyPriceInUsd,
+    });
+
+    return formatUserSummary({
+      currentTimestamp,
+      marketReferencePriceInUsd: baseCurrencyData.marketReferenceCurrencyPriceInUsd,
+      marketReferenceCurrencyDecimals: baseCurrencyData.marketReferenceCurrencyDecimals,
+      userReserves: userReserves.userReserves,
+      formattedReserves,
+      userEmodeCategoryId: userReserves.userEmodeCategoryId,
+    });
+  }
+
+  async getTokenReserves(token: string) {
+    const asset = this.market.ASSETS[token];
+    const userSummary = await this.getUserSummary();
+    const tokenReserves = userSummary.userReservesData.find((u) =>
+      u.underlyingAsset.toLowerCase() === asset.UNDERLYING.toLowerCase()
     );
 
-    return tx.wait();
+    if (!tokenReserves) {
+      throw Error(`Unable to get token reserves for ${token}.`);
+    }
+
+    return tokenReserves;
   }
 
-  async withdrawETH(amountETH: number | "max") {
-    const amount = amountETH === "max" ? MaxUint256 : parseEther(amountETH.toString())
+  async getAaveBalances() {
+    const userSummary = await this.getUserSummary();
 
-    await this.approveAWETH(amount)
+    return userSummary.userReservesData.map((userReserve) => {
+      const tokenEntry = Object.entries(this.market.ASSETS)
+        .find(([key, value]: [any, any]) =>
+          value.UNDERLYING.toLowerCase() === userReserve.underlyingAsset.toLowerCase()
+        );
 
-    const address = await this.signer.getAddress();
-    const tx = await this.gatewayContract.withdrawETH(address, amount, address);
-    return tx.wait()
+      return {
+        token: tokenEntry && tokenEntry[0],
+        decimals: tokenEntry && (tokenEntry[1] as any).decimals,
+        underlyingAsset: userReserve.underlyingAsset,
+        scaledATokenBalance: userReserve.scaledATokenBalance,
+        usageAsCollateralEnabledOnUser: userReserve.usageAsCollateralEnabledOnUser,
+        scaledVariableDebt: userReserve.scaledVariableDebt,
+        underlyingBalance: userReserve.underlyingBalance,
+        underlyingBalanceMarketReferenceCurrency: userReserve.underlyingBalanceMarketReferenceCurrency,
+        underlyingBalanceUSD: userReserve.underlyingBalanceUSD,
+        variableBorrows: userReserve.variableBorrows,
+        variableBorrowsMarketReferenceCurrency: userReserve.variableBorrowsMarketReferenceCurrency,
+        variableBorrowsUSD: userReserve.variableBorrowsUSD,
+        totalBorrows: userReserve.totalBorrows,
+        totalBorrowsMarketReferenceCurrency: userReserve.totalBorrowsMarketReferenceCurrency,
+        totalBorrowsUSD: userReserve.totalBorrowsUSD,
+      };
+    });
   }
 
-  async withdrawUSDC(amount: number | "max") {
-    const parsedAmount = amount === "max" ? MaxUint256 : parseUnits(amount.toString(), 6)
-
-    const address = await this.signer.getAddress();
-    const tx = await this.aavePoolV3Contract.withdraw(this.chainDetails.TOKENS.USDC, parsedAmount, address);
-    return tx.wait()
+  async getAaveBalance(token: string) {
+    const balances = await this.getAaveBalances();
+    return balances.find((b) => b.token === token);
   }
 
-  async approveAWETH(amount: bigint) {
-    return this.approve(amount, this.chainDetails.TOKENS.A_WETH, this.chainDetails.WRAPPED_TOKEN_GATEWAY)
+  async supply(amount: string, token: string) {
+    // const token = WETH | USDCn;
+    const asset = this.market.ASSETS[token];
+    const txs: EthereumTransactionTypeExtended[] = await this.pool.supply({
+      user: this.signer.address,
+      reserve: asset.UNDERLYING,
+      amount,
+    });
+    return await this.submitTransactions(txs);
   }
 
-  async supplyUSDC(amount: number) {
-    const parsedAmount = parseUnits(amount.toString(), 6);
-    await this.approve(parsedAmount, this.chainDetails.TOKENS.USDC, this.chainDetails.V3_POOL_AAVE);
-
-    const tx = await this.aavePoolV3Contract.supply(
-      this.chainDetails.TOKENS.USDC,       // Asset to supply (USDC address)
-      parsedAmount,             // Amount to supply (in smallest unit, i.e., Wei)
-      await this.signer.getAddress(), // On behalf of the signer
-      0                   // Referral code (set to 0 if not using referrals)
-    );
-    return tx.wait()
+  async withdrawAll(token: string) {
+    // const token = WETH | USDCn;
+    const tokenReserves = await this.getTokenReserves(token);
+    return this.withdraw(tokenReserves.underlyingBalance, token);
   }
 
-  async borrowUSDC(amount: number) {
-    return this.supplyUSDC(amount)
+  async withdraw(amount: string, token: string) {
+    // const token = WETH | USDCn;
+    const asset = this.market.ASSETS[token];
+    const txs: EthereumTransactionTypeExtended[] = await this.pool.withdraw({
+      user: this.signer.address,
+      reserve: asset.UNDERLYING,
+      amount,
+      aTokenAddress: asset.A_TOKEN,
+    });
+    return await this.submitTransactions(txs);
   }
 
-  async repayUSDC(amount: number | "max") {
-    const parsedAmount = amount === "max" ? MaxUint256 : parseUnits(amount.toString(), 6)
-    await this.approve(parsedAmount, this.chainDetails.TOKENS.USDC, this.chainDetails.V3_POOL_AAVE);
-
-    const tx = await this.aavePoolV3Contract.repay(
-      this.chainDetails.TOKENS.USDC,       // Asset to supply (USDC address)
-      parsedAmount,             // Amount to supply (in smallest unit, i.e., Wei)
-      2,
-      await this.signer.getAddress(), // On behalf of the signer
-    );
-    return tx.wait()
+  async borrow(amount: string, token: string) {
+    // const token = WETH | USDCn;
+    const asset = this.market.ASSETS[token];
+    const txs: EthereumTransactionTypeExtended[] = await this.pool.borrow({
+      user: this.signer.address,
+      reserve: asset.UNDERLYING,
+      amount,
+      interestRateMode: InterestRate.Variable,
+    });
+    return await this.submitTransactions(txs);
   }
 
-  async approve(amount: BigNumberish, token: string, address: string) {
-    const contract = new Contract(token, erc20Abi.abi, this.signer);
-    const tx = await contract.approve(address, amount);
-    return tx.wait()
+  async repay(amount: string, token: string) {
+    // const token = WETH | USDCn;
+    const asset = this.market.ASSETS[token];
+    this.market.ASSETS.USDCn;
+    const txs: EthereumTransactionTypeExtended[] = await this.pool.repay({
+      user: this.signer.address,
+      reserve: asset.UNDERLYING,
+      amount,
+      interestRateMode: InterestRate.Variable,
+    });
+    return await this.submitTransactions(txs);
+  }
+
+  async submitTransactions(txs: EthereumTransactionTypeExtended[]) {
+    return runSerially<any>(txs.map((tx) => () => this.submitTransaction(tx)));
+  }
+
+  async submitTransaction(tx: EthereumTransactionTypeExtended){
+    const txData = await tx.tx();
+    console.log(txData);
+    const transactionResponse = await this.signer.sendTransaction({
+      ...txData,
+      value: txData.value ? BigNumber.from(txData.value) : undefined,
+    });
+    return await transactionResponse.wait();
   }
 }

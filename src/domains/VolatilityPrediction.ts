@@ -12,6 +12,14 @@ export interface StatePrediction {
 }
 
 export enum Horizons {
-  min1= "1min",
-  min60= "60min",
+  min1="1min",
+  min15="15min",
+  min60="60min",
+  min240="240min",
+  min1440="1440min",
+}
+
+export enum Symbols {
+  ETH="ETH",
+  BTC="BTC",
 }

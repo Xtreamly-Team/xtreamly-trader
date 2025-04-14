@@ -1,19 +1,17 @@
 import { executor } from "@xtreamly/utils/executor";
-import { getChainDetails } from "@xtreamly/constants/helpers";
-import { Volatility } from "@xtreamly/models";
-import { getTokenBalance, } from "@xtreamly/actions";
-
-const wallet = '0xABC'
+import { getConfig } from "@xtreamly/utils/config";
+import { VolatilityAPI } from "@xtreamly/services/VolatilityAPI";
+import { AaveActions } from "@xtreamly/actions/AaveActions";
 
 async function actions(round: number) {
-  const chainDetails = getChainDetails()
-  console.log("Round", round);
+  const config = getConfig();
 
-  const pred = await new Volatility().lowPrediction()
-  console.log("Low volatility predicted", pred.low_volatility_signal);
+  const pred = await new VolatilityAPI().prediction();
+  console.log("Low volatility predicted", pred.volatility);
 
-  const balance = await getTokenBalance(wallet, chainDetails.TOKENS.USDC)
-  console.log("USDC balance", balance);
+  const aave = new AaveActions(config.chain.viemChain, config.provider, config.wallet);
+  const balances = await aave.getAaveBalances();
+  console.log("You aave balance", balances);
 }
 
 executor(actions).catch(console.error)

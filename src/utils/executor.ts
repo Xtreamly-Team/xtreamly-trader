@@ -1,6 +1,3 @@
-import { loadEnv } from "@xtreamly/utils/config";
-loadEnv()
-
 import { getConfig } from "@xtreamly/utils/config";
 
 export function sleep(ms: number): Promise<void> {

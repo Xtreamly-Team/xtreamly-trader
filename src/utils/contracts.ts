@@ -1,17 +1,15 @@
-import { getChainDetails } from "@xtreamly/constants/helpers";
+import { createPublicClient, http } from "viem";
 import { getConfig } from "@xtreamly/utils/config";
-import { createPublicClient, http, PublicClient } from "viem";
 
 export class Contract {
-  publicClient: PublicClient
+  publicClient: any
 
   constructor() {
-    const config = getConfig()
-    const chainDetails = getChainDetails()
+    const chainDetails = getConfig().chain
 
     this.publicClient = createPublicClient({
       chain: chainDetails.viemChain,
-      transport: http(config.rpc),
+      transport: http(chainDetails.rpc),
     });
   }
 

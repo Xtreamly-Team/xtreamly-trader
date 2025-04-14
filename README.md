@@ -39,22 +39,20 @@ yarn add git+ssh://git@github.com:Xtreamly-Team/xtreamly-trader
 ```typescript
 import {
    executor,
-   Volatility,
-   getTokenBalance,
+   VolatilityAPI,
+   AaveActions,
    getChainDetails
-} from "xtreamly_trader";
-
-const wallet = '0xABC'
+} from "getConfig";
 
 async function actions(round: number) {
-  const chainDetails = getChainDetails()
-  console.log("Round", round);
+   const config = getConfig();
 
-  const pred = await new Volatility().prediction()
-  console.log("Low volatility predicted", pred.low_volatility_signal);
+   const pred = await new VolatilityAPI().prediction();
+   console.log("Low volatility predicted", pred.volatility);
 
-  const balance = await getTokenBalance(wallet, chainDetails.TOKENS.USDC)
-  console.log("USDC balance", balance);
+   const aave = new AaveActions(config.chain.viemChain, config.provider, config.wallet);
+   const balances = await aave.getAaveBalances();
+   console.log("You aave balance", balances);
 }
 
 executor(actions).catch(console.error)
@@ -75,6 +73,8 @@ Your trading bot is configured via the [.env](.env) file (environment variables)
 3. `CHAIN`: The chain to execute your strategy on
 4. `NETWORK`: The network of that chain `sepolia` or `mainnet`
 5. `RPC` (optional): RPC to be used for action execution, if not provided will use the network's default RPC
+6. `WALLET_PRIVATE_KEY`: The private key of the trading bot wallet.
+7. `XTREAMLY_API_KEY`: A key to Xtreamly's API model predictions, get yours here: https://xtreamly.io/api
 
 You can just copy the [.env.example](.env.example) file:
 ```bash
@@ -83,7 +83,7 @@ cp .env.example .env
 
 ### Out of the box functionality:
 
-1. You have access to all Xtreamly's intelligence by importing `"@xtreamly/models"`
+1. You have access to all Xtreamly's intelligence by importing `"@xtreamly/services"`
 2. You have access to supported DeFi actions by importing `"@xtreamly/actions"`
 
 ### Example trading bot
@@ -91,7 +91,7 @@ cp .env.example .env
 ```typescript
 import { executor } from "@xtreamly/utils/executor";
 import { getChainDetails } from "@xtreamly/constants/helpers";
-import { Volatility } from "@xtreamly/models";
+import { VolatilityAPI } from "@xtreamly/models";
 import { getTokenBalance, } from "@xtreamly/actions";
 
 const wallet = '0xABC'
@@ -100,7 +100,7 @@ async function actions(round: number) {
   const chainDetails = getChainDetails()
   console.log("Round", round);
 
-  const pred = await new Volatility().prediction()
+  const pred = await new VolatilityAPI().prediction()
   console.log("Low volatility predicted", pred.low_volatility_signal);
 
   const balance = await getTokenBalance(wallet, chainDetails.TOKENS.USDC)
