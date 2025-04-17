@@ -4,7 +4,7 @@ import { VolatilityAPI } from "@xtreamly/services/VolatilityAPI";
 import { AaveAPI } from "@xtreamly/services/AaveAPI";
 import { AaveActions } from "@xtreamly/actions/AaveActions";
 import logger from "@xtreamly/utils/logger";
-import { LoopTrading } from "./src/strategies/LoopTrading";
+import { LoopTrading } from "@xtreamly/strategies";
 
 // Performing loop trading strategy using AAVE as described here:
 // https://medium.com/contango-xyz/what-is-looping-78421c8a1367
