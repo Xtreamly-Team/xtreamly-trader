@@ -8,6 +8,7 @@ export declare class AaveActions {
     private market;
     private pool;
     constructor(chain: Chain, provider: providers.JsonRpcProvider, signer: Wallet);
+    getAsset(token: string): any;
     getBalance(token: string): Promise<{
         token: string;
         tokenAddress: any;

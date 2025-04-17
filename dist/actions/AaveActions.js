@@ -58,12 +58,15 @@ class AaveActions {
             WETH_GATEWAY: this.market.WETH_GATEWAY,
         });
     }
+    getAsset(token) {
+        return this.market.ASSETS[token];
+    }
     async getBalance(token) {
         const t = new contract_helpers_1.WalletBalanceProvider({
             walletBalanceProviderAddress: this.market.WALLET_BALANCE_PROVIDER,
             provider: this.provider,
         });
-        const asset = this.market.ASSETS[token];
+        const asset = this.getAsset(token);
         const underlyingBalance = await t.balanceOf(this.signer.address, asset.UNDERLYING);
         const aTokenBalance = await t.balanceOf(this.signer.address, asset.A_TOKEN);
         return {
@@ -111,7 +114,7 @@ class AaveActions {
         });
     }
     async getTokenReserves(token, givenUserSummary) {
-        const asset = this.market.ASSETS[token];
+        const asset = this.getAsset(token);
         const userSummary = givenUserSummary || await this.getUserSummary();
         const tokenReserves = userSummary.userReservesData.find((u) => u.underlyingAsset.toLowerCase() === asset.UNDERLYING.toLowerCase());
         if (!tokenReserves) {
@@ -149,7 +152,7 @@ class AaveActions {
     }
     async supply(amount, token) {
         // const token = WETH | USDCn;
-        const asset = this.market.ASSETS[token];
+        const asset = this.getAsset(token);
         const txs = await this.pool.supply({
             user: this.signer.address,
             reserve: asset.UNDERLYING,
@@ -164,7 +167,7 @@ class AaveActions {
     }
     async withdraw(amount, token) {
         // const token = WETH | USDCn;
-        const asset = this.market.ASSETS[token];
+        const asset = this.getAsset(token);
         const txs = await this.pool.withdraw({
             user: this.signer.address,
             reserve: asset.UNDERLYING,
@@ -175,7 +178,7 @@ class AaveActions {
     }
     async borrow(amount, token) {
         // const token = WETH | USDCn;
-        const asset = this.market.ASSETS[token];
+        const asset = this.getAsset(token);
         const txs = await this.pool.borrow({
             user: this.signer.address,
             reserve: asset.UNDERLYING,
@@ -186,7 +189,7 @@ class AaveActions {
     }
     async repay(amount, token) {
         // const token = WETH | USDCn;
-        const asset = this.market.ASSETS[token];
+        const asset = this.getAsset(token);
         const txs = await this.pool.repay({
             user: this.signer.address,
             reserve: asset.UNDERLYING,
@@ -198,7 +201,7 @@ class AaveActions {
     // Throwing an error in the transactions
     // async repayWithCollateral(amount: string, token: string, collateralToken: string) {
     //   // const token = WETH | USDCn;
-    //   const asset = this.market.ASSETS[token];
+    //   const asset = this.getAsset(token);
     //   const collateralAsset = this.market.ASSETS[collateralToken];
     //
     //   const pool = new LendingPool(this.provider, {

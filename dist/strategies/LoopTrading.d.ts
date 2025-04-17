@@ -6,10 +6,12 @@ export interface LoopData {
 }
 export declare class LoopTrading {
     private loops;
-    private aave;
     private readonly collateralToken;
     private readonly borrowedToken;
     private initialCollateral;
+    private aave;
+    private uniswap;
+    private wethActions;
     constructor(chain: Chain, provider: providers.JsonRpcProvider, signer: Wallet, collateralToken: string, borrowedToken: string);
     init(initialCollateral: number): Promise<void>;
     swap(amount: number, fromToken: string, toToken: string): Promise<number>;

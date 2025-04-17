@@ -2,6 +2,8 @@ import { providers, Wallet } from "ethers";
 import type { Chain } from "viem/_types/types/chain";
 import { AaveActions } from "@xtreamly/actions";
 import logger from "@xtreamly/utils/logger";
+import { UniswapActions } from "@xtreamly/actions/UniswapActions";
+import { WETHActions } from "@xtreamly/actions/WETHActions";
 
 export interface LoopData {
   borrowed: number;
@@ -10,10 +12,12 @@ export interface LoopData {
 
 export class LoopTrading {
   private loops: LoopData[];
-  private aave: AaveActions;
   private readonly collateralToken: string;
   private readonly borrowedToken: string;
   private initialCollateral: number;
+  private aave: AaveActions;
+  private uniswap: UniswapActions;
+  private wethActions: WETHActions;
 
   constructor(
     chain: Chain,
@@ -23,6 +27,10 @@ export class LoopTrading {
     borrowedToken: string,
   ) {
     this.aave = new AaveActions(chain, provider, signer);
+    this.uniswap = new UniswapActions(chain, provider, signer);
+    const wethAddress = this.aave.getAsset("WETH").UNDERLYING;
+    this.wethActions = new WETHActions(wethAddress, signer);
+
     this.loops = [];
     this.collateralToken = collateralToken;
     this.borrowedToken = borrowedToken;
@@ -37,8 +45,17 @@ export class LoopTrading {
   }
 
   async swap(amount: number, fromToken: string, toToken: string) {
-    const amountToSwap = await this.aave.convertTokenAmount(amount, fromToken, toToken);
-    return amountToSwap;
+    const fromAsset = this.aave.getAsset(fromToken);
+    if (fromToken === "WETH") {
+      await this.wethActions.wrap(amount);
+    }
+    const toAsset = this.aave.getAsset(toToken);
+    const amountSwapped = await this.uniswap.swapV2(
+      amount.toString(),
+      fromAsset.UNDERLYING,
+      toAsset.UNDERLYING
+    );
+    return parseFloat(amountSwapped);
   }
 
   async borrowLoop(amount: number) {
@@ -52,9 +69,9 @@ export class LoopTrading {
 
     logger.info(`Performing loop ${this.loops.length + 1} for ${amount} ${this.collateralToken}...`);
 
-    // await this.aave.borrow(amountToBorrow.toString(), this.borrowedToken);
+    await this.aave.borrow(amountToBorrow.toString(), this.borrowedToken);
     const swappedAmount = await this.swap(amountToBorrow, this.borrowedToken, this.collateralToken);
-    // await this.aave.supply(swappedAmount.toString(), this.collateralToken);
+    await this.aave.supply(swappedAmount.toString(), this.collateralToken);
 
     const loop = {
       borrowed: amountToBorrow,
@@ -95,7 +112,7 @@ export class LoopTrading {
 
     const sum = loopsToRepay.map((l) => l.borrowed).reduce((a, b) => a + b, 0);
     logger.info(`Repaying ${c} borrowed loops ${this.loops.length} for ${sum} ${this.borrowedToken}...`);
-    // await this.aave.repay(last.borrowed.toString(), this.borrowedToken);
+    await this.aave.repay(sum.toString(), this.borrowedToken);
     this.loops = this.loops.slice(0, this.loops.length - c);
     logger.info(`Repayed ${c} borrowed loops ${this.loops.length} for ${sum} ${this.borrowedToken}.`);
   }

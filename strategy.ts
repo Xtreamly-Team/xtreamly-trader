@@ -11,11 +11,12 @@ import { LoopTrading } from "@xtreamly/strategies";
 
 const MIN_LOOPS = 4;
 const MAX_LOOPS = 10;
-const APPLY_ON_VOL_HIGH = false;
-const AMOUNT_TOKEN_COLLATERAL = 10;
+const HIGH_RISK_LEVEL = false;
+const INITIAL_COLLATERAL_AMOUNT = 10;
 const LIMIT_RATE_UTILIZATION = 0.9;
 const COLLATERAL_TOKEN = "USDCn";
 const BORROWED_TOKEN = "WETH";
+const STOP_LOSS_PERC = 10
 
 const config = getConfig();
 const aave = new AaveActions(config.chain.viemChain, config.provider, config.wallet);
@@ -24,7 +25,7 @@ const volatilityApi = new VolatilityAPI();
 const aaveApi = new AaveAPI(`aave_v3_${config.chain.name}`);
 
 async function init() {
-  await loopTrading.init(AMOUNT_TOKEN_COLLATERAL);
+  await loopTrading.init(INITIAL_COLLATERAL_AMOUNT);
 }
 
 async function actions(round: number) {
@@ -53,6 +54,14 @@ async function actions(round: number) {
     return await loopTrading.repayAll();
   }
 
+  // HEALTH check on performance
+  const performanceBelow10Perc = parseFloat(aaveUserSummary.netWorthUSD) < INITIAL_COLLATERAL_AMOUNT * (1 - (STOP_LOSS_PERC / 100));
+  if (performanceBelow10Perc) {
+    logger.info(`Performance has dropped by ${STOP_LOSS_PERC}%, getting out...`);
+    await loopTrading.repayAll();
+    process.exit(0);
+  }
+
   const healthFactor = parseFloat(aaveUserSummary.healthFactor);
   // apply reducing loops on health factor check
   if (healthFactor > 0 && healthFactor <= 1.01) {
@@ -64,10 +73,10 @@ async function actions(round: number) {
   if (marketStatus == "lowvol") {
     logger.info(`Market volatility status is ${marketStatus}, balancing loops to ${MIN_LOOPS}...`);
     return await loopTrading.balanceLoopsTo(MIN_LOOPS);
-  } else if (!APPLY_ON_VOL_HIGH) {
+  } else if (!HIGH_RISK_LEVEL) {
     logger.info(`Market volatility status is ${marketStatus}, getting out...`);
     return await loopTrading.repayAll();
-  } else if (APPLY_ON_VOL_HIGH) {
+  } else if (HIGH_RISK_LEVEL) {
     logger.info(`Market volatility status is ${marketStatus}, balancing loops to ${MAX_LOOPS}...`);
     return await loopTrading.balanceLoopsTo(MAX_LOOPS);
   }

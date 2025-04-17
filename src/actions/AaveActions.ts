@@ -39,12 +39,16 @@ export class AaveActions {
     });
   }
 
+  getAsset(token: string) {
+    return this.market.ASSETS[token];
+  }
+
   async getBalance(token: string) {
     const t = new WalletBalanceProvider({
       walletBalanceProviderAddress: this.market.WALLET_BALANCE_PROVIDER,
       provider: this.provider,
     });
-    const asset = this.market.ASSETS[token];
+    const asset = this.getAsset(token);
     const underlyingBalance = await t.balanceOf(this.signer.address, asset.UNDERLYING);
     const aTokenBalance = await t.balanceOf(this.signer.address, asset.A_TOKEN);
     return {
@@ -100,7 +104,7 @@ export class AaveActions {
   }
 
   async getTokenReserves(token: string, givenUserSummary?: FormatUserSummaryResponse) {
-    const asset = this.market.ASSETS[token];
+    const asset = this.getAsset(token);
     const userSummary = givenUserSummary || await this.getUserSummary();
     const tokenReserves = userSummary.userReservesData.find((u) =>
       u.underlyingAsset.toLowerCase() === asset.UNDERLYING.toLowerCase(),
@@ -149,7 +153,7 @@ export class AaveActions {
 
   async supply(amount: string, token: string) {
     // const token = WETH | USDCn;
-    const asset = this.market.ASSETS[token];
+    const asset = this.getAsset(token);
     const txs: EthereumTransactionTypeExtended[] = await this.pool.supply({
       user: this.signer.address,
       reserve: asset.UNDERLYING,
@@ -166,7 +170,7 @@ export class AaveActions {
 
   async withdraw(amount: string, token: string) {
     // const token = WETH | USDCn;
-    const asset = this.market.ASSETS[token];
+    const asset = this.getAsset(token);
     const txs: EthereumTransactionTypeExtended[] = await this.pool.withdraw({
       user: this.signer.address,
       reserve: asset.UNDERLYING,
@@ -178,7 +182,7 @@ export class AaveActions {
 
   async borrow(amount: string, token: string) {
     // const token = WETH | USDCn;
-    const asset = this.market.ASSETS[token];
+    const asset = this.getAsset(token);
     const txs: EthereumTransactionTypeExtended[] = await this.pool.borrow({
       user: this.signer.address,
       reserve: asset.UNDERLYING,
@@ -190,7 +194,7 @@ export class AaveActions {
 
   async repay(amount: string, token: string) {
     // const token = WETH | USDCn;
-    const asset = this.market.ASSETS[token];
+    const asset = this.getAsset(token);
     const txs: EthereumTransactionTypeExtended[] = await this.pool.repay({
       user: this.signer.address,
       reserve: asset.UNDERLYING,
@@ -203,7 +207,7 @@ export class AaveActions {
   // Throwing an error in the transactions
   // async repayWithCollateral(amount: string, token: string, collateralToken: string) {
   //   // const token = WETH | USDCn;
-  //   const asset = this.market.ASSETS[token];
+  //   const asset = this.getAsset(token);
   //   const collateralAsset = this.market.ASSETS[collateralToken];
   //
   //   const pool = new LendingPool(this.provider, {

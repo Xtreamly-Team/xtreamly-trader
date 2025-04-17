@@ -6,9 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoopTrading = void 0;
 const actions_1 = require("../actions");
 const logger_1 = __importDefault(require("../utils/logger"));
+const UniswapActions_1 = require("../actions/UniswapActions");
+const WETHActions_1 = require("../actions/WETHActions");
 class LoopTrading {
     constructor(chain, provider, signer, collateralToken, borrowedToken) {
         this.aave = new actions_1.AaveActions(chain, provider, signer);
+        this.uniswap = new UniswapActions_1.UniswapActions(chain, provider, signer);
+        const wethAddress = this.aave.getAsset("WETH").UNDERLYING;
+        this.wethActions = new WETHActions_1.WETHActions(wethAddress, signer);
         this.loops = [];
         this.collateralToken = collateralToken;
         this.borrowedToken = borrowedToken;
@@ -21,8 +26,13 @@ class LoopTrading {
         logger_1.default.info(`Initialized your loop trading by supplying ${initialCollateral} ${this.collateralToken} as collateral.`);
     }
     async swap(amount, fromToken, toToken) {
-        const amountToSwap = await this.aave.convertTokenAmount(amount, fromToken, toToken);
-        return amountToSwap;
+        const fromAsset = this.aave.getAsset(fromToken);
+        if (fromToken === "WETH") {
+            await this.wethActions.wrap(amount);
+        }
+        const toAsset = this.aave.getAsset(toToken);
+        const amountSwapped = await this.uniswap.swapV2(amount.toString(), fromAsset.UNDERLYING, toAsset.UNDERLYING);
+        return parseFloat(amountSwapped);
     }
     async borrowLoop(amount) {
         const userSummary = await this.aave.getUserSummary();
@@ -31,9 +41,9 @@ class LoopTrading {
         const ltvAdjusterAmount = amount * (ltv - gasFees);
         const amountToBorrow = await this.aave.convertTokenAmount(ltvAdjusterAmount, this.collateralToken, this.borrowedToken);
         logger_1.default.info(`Performing loop ${this.loops.length + 1} for ${amount} ${this.collateralToken}...`);
-        // await this.aave.borrow(amountToBorrow.toString(), this.borrowedToken);
+        await this.aave.borrow(amountToBorrow.toString(), this.borrowedToken);
         const swappedAmount = await this.swap(amountToBorrow, this.borrowedToken, this.collateralToken);
-        // await this.aave.supply(swappedAmount.toString(), this.collateralToken);
+        await this.aave.supply(swappedAmount.toString(), this.collateralToken);
         const loop = {
             borrowed: amountToBorrow,
             supplied: swappedAmount,
@@ -64,7 +74,7 @@ class LoopTrading {
         const loopsToRepay = this.loops.slice(-c);
         const sum = loopsToRepay.map((l) => l.borrowed).reduce((a, b) => a + b, 0);
         logger_1.default.info(`Repaying ${c} borrowed loops ${this.loops.length} for ${sum} ${this.borrowedToken}...`);
-        // await this.aave.repay(last.borrowed.toString(), this.borrowedToken);
+        await this.aave.repay(sum.toString(), this.borrowedToken);
         this.loops = this.loops.slice(0, this.loops.length - c);
         logger_1.default.info(`Repayed ${c} borrowed loops ${this.loops.length} for ${sum} ${this.borrowedToken}.`);
     }
