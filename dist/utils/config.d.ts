@@ -14,5 +14,7 @@ export declare function getWallet(): Wallet;
 export interface ChainDetails {
     viemChain: Chain;
     rpc: string;
+    name: string;
+    network: string;
 }
 //# sourceMappingURL=config.d.ts.map

@@ -1,6 +1,7 @@
-import { BigNumber, Wallet, providers } from "ethers";
+import { BigNumber, providers, Wallet } from "ethers";
 import { EthereumTransactionTypeExtended } from "@aave/contract-helpers";
 import type { Chain } from "viem/_types/types/chain";
+import { FormatUserSummaryResponse } from "@aave/math-utils/dist/esm/formatters/user";
 export declare class AaveActions {
     private signer;
     private readonly provider;
@@ -23,8 +24,8 @@ export declare class AaveActions {
         aTokenBalance: BigNumber;
         aTokenBalanceFormatted: string;
     }[]>;
-    getUserSummary(): Promise<import("@aave/math-utils").FormatUserSummaryResponse<import("@aave/contract-helpers").ReserveDataHumanized & import("@aave/math-utils").FormatReserveUSDResponse>>;
-    getTokenReserves(token: string): Promise<import("@aave/math-utils").ComputedUserReserve<import("@aave/contract-helpers").ReserveDataHumanized & import("@aave/math-utils").FormatReserveUSDResponse>>;
+    getUserSummary(): Promise<FormatUserSummaryResponse<import("@aave/contract-helpers").ReserveDataHumanized & import("@aave/math-utils").FormatReserveUSDResponse>>;
+    getTokenReserves(token: string, givenUserSummary?: FormatUserSummaryResponse): Promise<import("@aave/math-utils").ComputedUserReserve<import("@aave/math-utils").FormatReserveUSDResponse>>;
     getAaveBalances(): Promise<{
         token: string | undefined;
         decimals: any;
@@ -64,6 +65,7 @@ export declare class AaveActions {
     withdraw(amount: string, token: string): Promise<any[]>;
     borrow(amount: string, token: string): Promise<any[]>;
     repay(amount: string, token: string): Promise<any[]>;
+    convertTokenAmount(amount: number, fromToken: string, toToken: string): Promise<number>;
     submitTransactions(txs: EthereumTransactionTypeExtended[]): Promise<any[]>;
     submitTransaction(tx: EthereumTransactionTypeExtended): Promise<providers.TransactionReceipt>;
 }

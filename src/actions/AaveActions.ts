@@ -1,24 +1,20 @@
-import {
-  BigNumber,
-  Wallet,
-  providers,
-  utils
-} from "ethers";
+import { BigNumber, providers, utils, Wallet } from "ethers";
 import {
   EthereumTransactionTypeExtended,
   InterestRate,
   Pool,
   UiPoolDataProvider,
-  WalletBalanceProvider
+  WalletBalanceProvider,
 } from "@aave/contract-helpers";
 import type { Chain } from "viem/_types/types/chain";
 import * as markets from "@bgd-labs/aave-address-book";
 import { formatReserves, formatUserSummary } from "@aave/math-utils";
 import dayjs from "dayjs";
-import { getProvider, runSerially } from "@xtreamly/utils";
-
+import { runSerially } from "@xtreamly/utils";
+import { FormatUserSummaryResponse } from "@aave/math-utils/dist/esm/formatters/user";
 
 export class AaveActions {
+  // A class that implements the Aave V3 utilities: https://github.com/aave/aave-utilities
   private signer: Wallet;
   private readonly provider: providers.JsonRpcProvider;
   private market: any;
@@ -36,7 +32,7 @@ export class AaveActions {
 
     this.market = market[1];
 
-    this.pool = new Pool(getProvider(), {
+    this.pool = new Pool(provider, {
       POOL: this.market.POOL,
       SWAP_COLLATERAL_ADAPTER: this.market.SWAP_COLLATERAL_ADAPTER,
       WETH_GATEWAY: this.market.WETH_GATEWAY,
@@ -58,7 +54,7 @@ export class AaveActions {
       balanceFormatted: utils.formatUnits(underlyingBalance, asset.decimals),
       aTokenBalance,
       aTokenBalanceFormatted: utils.formatUnits(aTokenBalance, asset.decimals),
-    }
+    };
   }
 
   async getBalances() {
@@ -103,11 +99,11 @@ export class AaveActions {
     });
   }
 
-  async getTokenReserves(token: string) {
+  async getTokenReserves(token: string, givenUserSummary?: FormatUserSummaryResponse) {
     const asset = this.market.ASSETS[token];
-    const userSummary = await this.getUserSummary();
+    const userSummary = givenUserSummary || await this.getUserSummary();
     const tokenReserves = userSummary.userReservesData.find((u) =>
-      u.underlyingAsset.toLowerCase() === asset.UNDERLYING.toLowerCase()
+      u.underlyingAsset.toLowerCase() === asset.UNDERLYING.toLowerCase(),
     );
 
     if (!tokenReserves) {
@@ -123,7 +119,7 @@ export class AaveActions {
     return userSummary.userReservesData.map((userReserve) => {
       const tokenEntry = Object.entries(this.market.ASSETS)
         .find(([key, value]: [any, any]) =>
-          value.UNDERLYING.toLowerCase() === userReserve.underlyingAsset.toLowerCase()
+          value.UNDERLYING.toLowerCase() === userReserve.underlyingAsset.toLowerCase(),
         );
 
       return {
@@ -195,7 +191,6 @@ export class AaveActions {
   async repay(amount: string, token: string) {
     // const token = WETH | USDCn;
     const asset = this.market.ASSETS[token];
-    this.market.ASSETS.USDCn;
     const txs: EthereumTransactionTypeExtended[] = await this.pool.repay({
       user: this.signer.address,
       reserve: asset.UNDERLYING,
@@ -205,13 +200,55 @@ export class AaveActions {
     return await this.submitTransactions(txs);
   }
 
+  // Throwing an error in the transactions
+  // async repayWithCollateral(amount: string, token: string, collateralToken: string) {
+  //   // const token = WETH | USDCn;
+  //   const asset = this.market.ASSETS[token];
+  //   const collateralAsset = this.market.ASSETS[collateralToken];
+  //
+  //   const pool = new LendingPool(this.provider, {
+  //     LENDING_POOL: this.market.POOL,
+  //     REPAY_WITH_COLLATERAL_ADAPTER: this.market.REPAY_WITH_COLLATERAL_ADAPTER,
+  //     WETH_GATEWAY: this.market.WETH_GATEWAY,
+  //   });
+  //
+  //   const repayWithAmount = await this.convertTokenAmount(parseFloat(amount), token, collateralToken);
+  //
+  //   const txs: EthereumTransactionTypeExtended[] = await pool.repayWithCollateral({
+  //     user: this.signer.address,
+  //     fromAsset: collateralAsset.UNDERLYING,
+  //     fromAToken: collateralAsset.A_TOKEN,
+  //     assetToRepay: asset.UNDERLYING,
+  //     repayWithAmount: repayWithAmount.toString(),
+  //     repayAmount: amount,
+  //     rateMode: InterestRate.Variable,
+  //   });
+  //   return await this.submitTransactions(txs);
+  // }
+
+  async convertTokenAmount(
+    amount: number,
+    fromToken: string,
+    toToken: string,
+  ): Promise<number> {
+    const userSummary = await this.getUserSummary();
+
+    const fromTokenReserve = await this.getTokenReserves(fromToken, userSummary);
+    const toTokenReserve = await this.getTokenReserves(toToken, userSummary);
+
+    const fromTokenUSD = parseFloat(fromTokenReserve.reserve.priceInUSD);
+    const toTokenUSD = parseFloat(toTokenReserve.reserve.priceInUSD);
+
+    const amountInUSD = amount * fromTokenUSD;
+    return amountInUSD / toTokenUSD;
+  }
+
   async submitTransactions(txs: EthereumTransactionTypeExtended[]) {
     return runSerially<any>(txs.map((tx) => () => this.submitTransaction(tx)));
   }
 
-  async submitTransaction(tx: EthereumTransactionTypeExtended){
+  async submitTransaction(tx: EthereumTransactionTypeExtended) {
     const txData = await tx.tx();
-    console.log(txData);
     const transactionResponse = await this.signer.sendTransaction({
       ...txData,
       value: txData.value ? BigNumber.from(txData.value) : undefined,

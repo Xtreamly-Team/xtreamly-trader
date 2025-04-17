@@ -19,3 +19,4 @@ __exportStar(require("./executor"), exports);
 __exportStar(require("./config"), exports);
 __exportStar(require("./contracts"), exports);
 __exportStar(require("./misc"), exports);
+__exportStar(require("./logger"), exports);

@@ -5,8 +5,10 @@ const aave_config_1 = require("../utils/aave_config");
 const api_1 = require("../utils/api");
 const HOURS_IN_MS = 60 * 60 * 1000;
 class AaveAPI extends api_1.API {
-    constructor() {
+    constructor(protocol) {
         super("https://aave-api-v2.aave.com/");
+        this.protocolName = protocol;
+        this.protocol = aave_config_1.PROTOCOLS[protocol];
     }
     static _toRates(res) {
         const dt = new Date(res.x.year, res.x.month, res.x.date, res.x.hours);
@@ -18,36 +20,38 @@ class AaveAPI extends api_1.API {
             stableBorrowRate_avg: parseFloat(res.stableBorrowRate_avg),
         };
     }
-    async getRatesByCoin(protocol, coin, start, freq = 1 // hours
-    ) {
+    async getRatesByCoin(coin, start, freq = 1) {
         const startTimestamp = Math.floor(start.getTime() / 1000); // Convert to seconds
-        const prot = aave_config_1.PROTOCOLS[protocol];
-        let reserveId = prot.coins[coin];
-        if (prot.version === "v3") {
-            reserveId = `${reserveId}${prot.chainId}`;
+        let reserveId = this.protocol.coins[coin];
+        if (this.protocol.version === "v3") {
+            reserveId = `${reserveId}${this.protocol.chainId}`;
         }
         const params = {
             reserveId,
             from: startTimestamp,
             resolutionInHours: freq,
         };
-        const response = await this.get('data/rates-history', params);
+        const response = await this.get("data/rates-history", params);
         const records = response.map(AaveAPI._toRates);
         return records.map((record) => ({
-            protocol,
-            protocol_version: prot.version,
-            chain_id: prot.chainId,
-            chain: prot.chain,
+            protocol: this.protocolName,
+            protocol_version: this.protocol.version,
+            chain_id: this.protocol.chainId,
+            chain: this.protocol.chain,
             coin,
             coin_id: reserveId,
             ...record,
         }));
     }
-    async getLatestRatesByCoin(protocol, coin) {
+    async getLatestRatesByCoin(coin) {
         const twoHoursAgo = new Date(Date.now() - 2 * HOURS_IN_MS);
-        const rates = await this.getRatesByCoin(protocol, coin, twoHoursAgo);
+        const rates = await this.getRatesByCoin(coin, twoHoursAgo);
         rates.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
-        return rates.pop();
+        const rate = rates.pop();
+        if (!rate) {
+            throw new Error(`Failed to get AAVE rates for ${coin}.`);
+        }
+        return rate;
     }
 }
 exports.AaveAPI = AaveAPI;

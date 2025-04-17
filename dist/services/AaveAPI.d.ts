@@ -7,9 +7,11 @@ export interface AaveRate {
     stableBorrowRate_avg: number;
 }
 export declare class AaveAPI extends API {
-    constructor();
+    private protocol;
+    private protocolName;
+    constructor(protocol: string);
     private static _toRates;
-    getRatesByCoin(protocol: string, coin: string, start: Date, freq?: number): Promise<AaveRate[]>;
-    getLatestRatesByCoin(protocol: string, coin: string): Promise<AaveRate | undefined>;
+    getRatesByCoin(coin: string, start: Date, freq?: number): Promise<AaveRate[]>;
+    getLatestRatesByCoin(coin: string): Promise<AaveRate>;
 }
 //# sourceMappingURL=AaveAPI.d.ts.map

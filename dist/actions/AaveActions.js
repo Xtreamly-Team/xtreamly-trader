@@ -52,7 +52,7 @@ class AaveActions {
             throw Error("Unknown Aave v3 market for chain: " + chain.name);
         }
         this.market = market[1];
-        this.pool = new contract_helpers_1.Pool((0, utils_1.getProvider)(), {
+        this.pool = new contract_helpers_1.Pool(provider, {
             POOL: this.market.POOL,
             SWAP_COLLATERAL_ADAPTER: this.market.SWAP_COLLATERAL_ADAPTER,
             WETH_GATEWAY: this.market.WETH_GATEWAY,
@@ -110,9 +110,9 @@ class AaveActions {
             userEmodeCategoryId: userReserves.userEmodeCategoryId,
         });
     }
-    async getTokenReserves(token) {
+    async getTokenReserves(token, givenUserSummary) {
         const asset = this.market.ASSETS[token];
-        const userSummary = await this.getUserSummary();
+        const userSummary = givenUserSummary || await this.getUserSummary();
         const tokenReserves = userSummary.userReservesData.find((u) => u.underlyingAsset.toLowerCase() === asset.UNDERLYING.toLowerCase());
         if (!tokenReserves) {
             throw Error(`Unable to get token reserves for ${token}.`);
@@ -187,7 +187,6 @@ class AaveActions {
     async repay(amount, token) {
         // const token = WETH | USDCn;
         const asset = this.market.ASSETS[token];
-        this.market.ASSETS.USDCn;
         const txs = await this.pool.repay({
             user: this.signer.address,
             reserve: asset.UNDERLYING,
@@ -196,12 +195,45 @@ class AaveActions {
         });
         return await this.submitTransactions(txs);
     }
+    // Throwing an error in the transactions
+    // async repayWithCollateral(amount: string, token: string, collateralToken: string) {
+    //   // const token = WETH | USDCn;
+    //   const asset = this.market.ASSETS[token];
+    //   const collateralAsset = this.market.ASSETS[collateralToken];
+    //
+    //   const pool = new LendingPool(this.provider, {
+    //     LENDING_POOL: this.market.POOL,
+    //     REPAY_WITH_COLLATERAL_ADAPTER: this.market.REPAY_WITH_COLLATERAL_ADAPTER,
+    //     WETH_GATEWAY: this.market.WETH_GATEWAY,
+    //   });
+    //
+    //   const repayWithAmount = await this.convertTokenAmount(parseFloat(amount), token, collateralToken);
+    //
+    //   const txs: EthereumTransactionTypeExtended[] = await pool.repayWithCollateral({
+    //     user: this.signer.address,
+    //     fromAsset: collateralAsset.UNDERLYING,
+    //     fromAToken: collateralAsset.A_TOKEN,
+    //     assetToRepay: asset.UNDERLYING,
+    //     repayWithAmount: repayWithAmount.toString(),
+    //     repayAmount: amount,
+    //     rateMode: InterestRate.Variable,
+    //   });
+    //   return await this.submitTransactions(txs);
+    // }
+    async convertTokenAmount(amount, fromToken, toToken) {
+        const userSummary = await this.getUserSummary();
+        const fromTokenReserve = await this.getTokenReserves(fromToken, userSummary);
+        const toTokenReserve = await this.getTokenReserves(toToken, userSummary);
+        const fromTokenUSD = parseFloat(fromTokenReserve.reserve.priceInUSD);
+        const toTokenUSD = parseFloat(toTokenReserve.reserve.priceInUSD);
+        const amountInUSD = amount * fromTokenUSD;
+        return amountInUSD / toTokenUSD;
+    }
     async submitTransactions(txs) {
         return (0, utils_1.runSerially)(txs.map((tx) => () => this.submitTransaction(tx)));
     }
     async submitTransaction(tx) {
         const txData = await tx.tx();
-        console.log(txData);
         const transactionResponse = await this.signer.sendTransaction({
             ...txData,
             value: txData.value ? ethers_1.BigNumber.from(txData.value) : undefined,

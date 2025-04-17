@@ -12,8 +12,13 @@ export interface AaveRate {
 const HOURS_IN_MS = 60 * 60 * 1000;
 
 export class AaveAPI extends API {
-  constructor() {
-    super("https://aave-api-v2.aave.com/")
+  private protocol: any;
+  private protocolName: string;
+
+  constructor(protocol: string) {
+    super("https://aave-api-v2.aave.com/");
+    this.protocolName = protocol;
+    this.protocol = PROTOCOLS[protocol];
   }
 
   private static _toRates(res: any): AaveRate {
@@ -21,7 +26,7 @@ export class AaveAPI extends API {
       res.x.year,
       res.x.month,
       res.x.date,
-      res.x.hours
+      res.x.hours,
     );
 
     return {
@@ -34,18 +39,16 @@ export class AaveAPI extends API {
   }
 
   async getRatesByCoin(
-    protocol: string,
     coin: string,
     start: Date,
-    freq: number = 1 // hours
+    freq: number = 1, // hours
   ): Promise<AaveRate[]> {
     const startTimestamp = Math.floor(start.getTime() / 1000); // Convert to seconds
-    const prot: any = PROTOCOLS[protocol];
 
-    let reserveId = prot.coins[coin];
+    let reserveId = this.protocol.coins[coin];
 
-    if (prot.version === "v3") {
-      reserveId = `${reserveId}${prot.chainId}`;
+    if (this.protocol.version === "v3") {
+      reserveId = `${reserveId}${this.protocol.chainId}`;
     }
 
     const params: any = {
@@ -54,29 +57,30 @@ export class AaveAPI extends API {
       resolutionInHours: freq,
     };
 
-    const response = await this.get('data/rates-history', params)
+    const response = await this.get("data/rates-history", params);
     const records = response.map(AaveAPI._toRates);
 
     return records.map((record: AaveRate) => ({
-      protocol,
-      protocol_version: prot.version,
-      chain_id: prot.chainId,
-      chain: prot.chain,
+      protocol: this.protocolName,
+      protocol_version: this.protocol.version,
+      chain_id: this.protocol.chainId,
+      chain: this.protocol.chain,
       coin,
       coin_id: reserveId,
       ...record,
     }));
   }
 
-  async getLatestRatesByCoin(
-    protocol: string,
-    coin: string,
-  ): Promise<AaveRate | undefined> {
+  async getLatestRatesByCoin(coin: string): Promise<AaveRate> {
     const twoHoursAgo = new Date(Date.now() - 2 * HOURS_IN_MS);
-    const rates = await this.getRatesByCoin(protocol, coin, twoHoursAgo)
+    const rates = await this.getRatesByCoin(coin, twoHoursAgo);
 
     rates.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
 
-    return rates.pop()
+    const rate = rates.pop();
+    if (!rate) {
+      throw new Error(`Failed to get AAVE rates for ${coin}.`);
+    }
+    return rate;
   }
 }

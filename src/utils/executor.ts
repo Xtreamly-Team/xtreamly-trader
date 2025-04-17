@@ -1,4 +1,5 @@
 import { getConfig } from "@xtreamly/utils/config";
+import logger from "@xtreamly/utils/logger";
 
 export function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -7,20 +8,24 @@ export function sleep(ms: number): Promise<void> {
 export async function executor(
   actions: (round: number) => Promise<void>,
 ): Promise<void> {
-  console.log("Starting trading loop...");
+  logger.info("Starting trading loop...");
 
-  const interval = getConfig().interval
-  const rounds = getConfig().rounds
+  const interval = getConfig().interval;
+  const rounds = getConfig().rounds;
 
-  let i = 1
+  let i = 1;
   while (true) {
-    await actions(i)
-    await sleep(interval * 1000)
-    if (rounds && i >= rounds) {
-      break
+    try {
+      await actions(i);
+    } catch (err) {
+      logger.error(`On round ${i}, ${err}`);
     }
-    i += 1
+    await sleep(interval * 1000);
+    if (rounds && i >= rounds) {
+      break;
+    }
+    i += 1;
   }
 
-  console.log("Trading loop ended.");
+  logger.info("Trading loop ended.");
 }

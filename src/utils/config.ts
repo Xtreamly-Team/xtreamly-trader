@@ -61,6 +61,8 @@ export function getWallet(): Wallet {
 export interface ChainDetails {
   viemChain: Chain
   rpc: string
+  name: string
+  network: string
 }
 
 function getChainDetails(): ChainDetails {
@@ -80,6 +82,8 @@ function getChainDetails(): ChainDetails {
 
   return {
     viemChain,
+    name: chain,
+    network,
     rpc
   }
 }

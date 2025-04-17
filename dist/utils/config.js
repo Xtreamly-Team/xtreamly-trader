@@ -88,6 +88,8 @@ function getChainDetails() {
     const rpc = viemChain.rpcUrls.default.http[0];
     return {
         viemChain,
+        name: chain,
+        network,
         rpc
     };
 }
